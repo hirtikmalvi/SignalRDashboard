@@ -1,4 +1,5 @@
 using SignalRDashboard.API.Hubs;
+using SignalRDashboard.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 builder.Services.AddSignalR();
+
+// Register MetricsService as a background service
+builder.Services.AddHostedService<MetricsService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
