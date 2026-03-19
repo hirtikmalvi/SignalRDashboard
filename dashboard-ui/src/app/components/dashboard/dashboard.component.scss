@@ -1,0 +1,101 @@
+.dashboard-shell {
+  min-height: 100vh;
+  background: #f5f5f3;
+  padding: 32px;
+  font-family: system-ui, sans-serif;
+}
+
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c2c2a;
+    margin: 0 0 4px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: #888780;
+  }
+}
+
+// Connection status badge
+.connection-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: capitalize;
+  border: 1px solid;
+
+  // Color per state
+  &.connected {
+    background: #e1f5ee;
+    color: #085041;
+    border-color: #5dcaa5;
+  }
+  &.connecting {
+    background: #faeeda;
+    color: #633806;
+    border-color: #ef9f27;
+  }
+  &.reconnecting {
+    background: #faeeda;
+    color: #633806;
+    border-color: #ef9f27;
+  }
+  &.disconnected {
+    background: #fcebeb;
+    color: #501313;
+    border-color: #f09595;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+
+    .connected & {
+      background: #1d9e75;
+    }
+    .connecting & {
+      background: #ba7517;
+    }
+    .reconnecting & {
+      background: #ba7517;
+    }
+    .disconnected & {
+      background: #e24b4a;
+    }
+  }
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.last-updated {
+  font-size: 12px;
+  color: #b4b2a9;
+  text-align: right;
+}
+
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #888780;
+  font-size: 15px;
+}

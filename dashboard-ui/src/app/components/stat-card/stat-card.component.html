@@ -1,0 +1,8 @@
+<div class="card" [ngClass]="theme">
+  <span class="label">{{ label }}</span>
+  <div class="value-row">
+    <span class="value" [ngClass]="status">{{ value }}</span>
+    <span class="unit" *ngIf="unit">{{ unit }}</span>
+  </div>
+  <div class="pulse-dot" [ngClass]="theme"></div>
+</div>

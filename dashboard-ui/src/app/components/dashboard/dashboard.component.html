@@ -1,0 +1,54 @@
+<div class="dashboard-shell">
+  <!-- Header bar -->
+  <header class="dash-header">
+    <div class="dash-title">
+      <h1>Live Dashboard</h1>
+      <span class="subtitle">Updates every 2 seconds via SignalR</span>
+    </div>
+    <div class="connection-badge" [ngClass]="connectionState$ | async">
+      <span class="dot"></span>
+      {{ connectionState$ | async }}
+    </div>
+  </header>
+
+  <!-- Stat cards — driven by the metrics Observable -->
+  <ng-container *ngIf="metrics$ | async as m">
+    <div class="cards-grid">
+      <app-stat-card label="Active users" [value]="m.activeUsers" theme="teal">
+      </app-stat-card>
+
+      <app-stat-card
+        label="Server CPU"
+        [value]="formatCpu(m)"
+        unit="%"
+        theme="purple"
+        [statusFn]="cpuStatus"
+      >
+      </app-stat-card>
+
+      <app-stat-card label="Orders today" [value]="m.ordersToday" theme="amber">
+      </app-stat-card>
+
+      <app-stat-card
+        label="Error rate"
+        [value]="formatError(m)"
+        unit="%"
+        theme="coral"
+        [statusFn]="errorStatus"
+      >
+      </app-stat-card>
+    </div>
+
+    <!-- Timestamp footer -->
+    <p class="last-updated">
+      Last updated: {{ m.timestamp | date: "HH:mm:ss" }}
+    </p>
+  </ng-container>
+
+  <!-- Show while waiting for first push -->
+  <ng-container *ngIf="(metrics$ | async) === null">
+    <div class="loading-state">
+      <p>Waiting for data...</p>
+    </div>
+  </ng-container>
+</div>
