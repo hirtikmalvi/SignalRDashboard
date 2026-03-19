@@ -1,0 +1,6 @@
+@SignalRDashboard.API_HostAddress = http://localhost:5112
+
+GET {{SignalRDashboard.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
